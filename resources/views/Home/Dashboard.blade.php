@@ -23,7 +23,7 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
-                        <a href="/sinistres"><div class="card-title">Gestion des sinistres</div></a>
+                        <a href="/sinisters"><div class="card-title">Gestion des sinistres</div></a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
-                        <a href="/users"><div class="card-title">Gestion des Clients</div></a>
+                        <a href="/customers"><div class="card-title">Gestion des Clients</div></a>
                     </div>
                 </div>
             </div>

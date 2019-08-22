@@ -23,6 +23,7 @@ Route::get('/employee/edit/{id}', 'UserController@edit');
 Route::post('/employee/update/{id}', 'UserController@update');
 Route::post('/employee/destroy/{id}', 'UserController@destroy');
 
+//Gestion des voyages
 Route::get('/trips', 'TripController@index');
 Route::get('/trip/show/{id}', 'TripController@show');
 Route::get('/trip/create', 'TripController@create');

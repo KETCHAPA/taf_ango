@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Employé {{ $employee->id }}')
+@section('title', 'Employé ' . $employee->id)
 @section('content')
     <div class="page-inner">
         <h4 class="page-title">Employé n° {{ $employee->id }}</h4>

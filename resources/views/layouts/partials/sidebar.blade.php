@@ -39,7 +39,7 @@
 					</div>
 					<ul class="nav nav-primary">
 						<li class="nav-item active">
-							<a href="index.html#dashboard" aria-expanded="false">
+							<a href="/" aria-expanded="false">
 								<i class="fas fa-home"></i>
 								<p>Tableau de bord</p>
 							</a>
@@ -49,14 +49,14 @@
 								<i class="fa fa-ellipsis-h"></i>
 							</span>
 						</li>
-						<li onclick="window.location.href='/trip'" class="nav-item">
+						<li onclick="window.location.href='/trips'" class="nav-item">
 							<a data-toggle="collapse" href="index.html#base">
 								<i class="fas fa-bus"></i>
 								<p>Gestion des voyages</p>
 							</a>
                         </li>
                         
-						<li onclick="window.location.href='/employees'" class="nav-item">
+						<li onclick="window.location.href='/sinisters'" class="nav-item">
 							<a data-toggle="collapse" href="index.html#base">
 								<i class="fas fa-car-crash"></i>
 								<p>Gestion des Sinistres</p>
