@@ -2,7 +2,14 @@
 @section('title', 'Voyage ' . $trip->id)
 @section('content')
     <div class="page-inner">
-        <h4 class="page-title">Voyage <strong>{{ $trip->departure }}</strong>  vers <strong>{{ $trip->destination }}</strong></h4>
+        <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <h4 class="card-title">Tickets du voyage {{ $trip->departure }} vers {{ $trip->destination }} </h4>
+                    <button onclick="window.location.href='/tickets/{{ $trip->id }}'" class="btn btn-info btn-round ml-auto">
+                        Ticket du bus
+                    </button>
+                </div>
+            </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-with-nav">

@@ -36,9 +36,12 @@
                                     <td>{{ $trip->time }}</td>
                                     <td>{{ $trip->date }}</td>
                                     <td>{{ $trip->amount }}</td>
-                                    <td style="min-width: 200px">
+                                    <td style="min-width: 250px">
                                         <a href="/trip/show/{{$trip->id}}"><button class="btn btn-primary">
-                                            <i class="fas fa-eye"></i>
+                                                <i class="fas fa-eye"></i>
+                                            </button></a>
+                                        <a href="/tickets/{{$trip->id}}"><button class="btn btn-dark">
+                                            <i class="fas fa-ticket-alt"></i>
                                         </button></a>
                                         <a href="/trip/edit/{{$trip->id}}" style=""><button class="btn btn-warning">
                                             <i class="fas fa-pencil-alt"></i>
