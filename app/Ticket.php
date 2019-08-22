@@ -9,4 +9,5 @@ class Ticket extends BaseModel
     public function trip() {
         return $this->belongsTo("App\Trip");
     }
+
 }

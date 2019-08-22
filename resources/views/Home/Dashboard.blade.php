@@ -39,7 +39,7 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
-                        <a href="/customers"><div class="card-title">Gestion des Clients</div></a>
+                        <a href="/bookings"><div class="card-title">Gestion des Reservations</div></a>
                     </div>
                 </div>
             </div>
