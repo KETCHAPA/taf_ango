@@ -10,13 +10,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        "first_name", "last_name", "age", "email", "cni", "address"
     ];
 
     /**
@@ -28,6 +30,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function presences(){
+        return $this->hasMany(Presence::class);
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -36,4 +42,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPasswordAttribute($password){
+        return $this->attributes["password"] = bcrypt($password);
+    }
 }
