@@ -49,31 +49,31 @@
 								<i class="fa fa-ellipsis-h"></i>
 							</span>
 						</li>
-						<li class="nav-item">
+						<li onclick="window.location.href='/trip'" class="nav-item">
 							<a data-toggle="collapse" href="index.html#base">
-								<i class="fas fa-layer-group"></i>
+								<i class="fas fa-bus"></i>
 								<p>Gestion des voyages</p>
 							</a>
                         </li>
                         
-						<li class="nav-item">
+						<li onclick="window.location.href='/employees'" class="nav-item">
 							<a data-toggle="collapse" href="index.html#base">
-								<i class="fas fa-layer-group"></i>
+								<i class="fas fa-car-crash"></i>
 								<p>Gestion des Sinistres</p>
 							</a>
                         </li>
                         
-						<li class="nav-item">
+						<li onclick="window.location.href='/employees'" class="nav-item">
 							<a data-toggle="collapse" href="index.html#base">
-								<i class="fas fa-layer-group"></i>
+								<i class="fas fa-user-tie"></i>
 								<p>Gestion du personnel</p>
 							</a>
                         </li>
                         
-						<li class="nav-item">
+						<li onclick="window.location.href='/customers'" class="nav-item">
 							<a data-toggle="collapse" href="index.html#base">
-								<i class="fas fa-layer-group"></i>
-								<p>Gestion des passagers</p>
+								<i class="fas fa-credit-card"></i>
+								<p>Gestion des clients</p>
 							</a>
                         </li>
 					</ul>

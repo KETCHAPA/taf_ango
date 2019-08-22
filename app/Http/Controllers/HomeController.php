@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    function dashboard() {
+    public function dashboard() {
         return view("Home.Dashboard");
     }
+
+    public function search(Request $request){
+        return null;
+    }
+
 }

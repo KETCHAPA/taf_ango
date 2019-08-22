@@ -15,7 +15,7 @@
             </ul>
         </nav>
         <div class="copyright ml-auto"> Tous droits reservés &copy;
-            2019, réalisé avec <i class="fa fa-heart heart text-danger"></i> par <a href="index.html#">Ango Simplice</a>
+            2019, réalisé avec <i style="margin: 0px" class="fa fa-heart heart text-danger"></i> par <a href="index.html#">Ango Simplice</a>
         </div>				
     </div>
 </footer>

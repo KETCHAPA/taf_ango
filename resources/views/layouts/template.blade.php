@@ -20,13 +20,18 @@
 			}
 		});
 	</script>
+	
+	{{-- fontawesome kit 5 --}}
+	<script src="https://kit.fontawesome.com/9842a92080.js"></script>
 
 	<!-- CSS Files -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 	<link rel="stylesheet" href="\css/bootstrap.min.css">
 	<link rel="stylesheet" href="\css/atlantis.css">
-
+	
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="\css/demo.css">
+	<link rel="stylesheet" href="\css/style.css">
 </head>
 <body>
 	<div class="wrapper">
@@ -35,7 +40,6 @@
 
 			@include('layouts.partials.navbar')
 		</div>
-
         @include('layouts.partials.sidebar')
         
         <div class="main-panel">
@@ -439,6 +443,8 @@
 			</div>
         </div>
 	</div>
+	
 	@include('layouts.partials.script')
+	
 </body>
 </html>

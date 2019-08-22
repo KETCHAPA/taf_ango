@@ -32,7 +32,7 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
-                        <div class="card-title">Gestion des employés</div>
+                        <a href="/employees"><div class="card-title">Gestion des employés</div></a>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+
 <!--   Core JS Files   -->
 <script src="\js/core/jquery.3.2.1.min.js"></script>
 <script src="\js/core/popper.min.js"></script>
@@ -77,6 +78,7 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="\js/setting-demo.js"></script>
 <script src="\js/demo.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     Circles.create({
         id:'circles-1',
@@ -171,3 +173,6 @@
         fillColor: 'rgba(255, 165, 52, .14)'
     });
 </script>
+<script src="\js/notify.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+@yield('script')
