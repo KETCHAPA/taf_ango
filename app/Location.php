@@ -19,13 +19,13 @@ class Location extends Model
         $cancelled = $this->attributes['cancelled'];
         $duration = $this->attributes['duration'];
 
-        $location_date = Carbon::createFromTimeString($this->attributes['location_date']);
+        /*$location_date = Carbon::createFromTimeString($this->attributes['location_date']);
         $end_date = $location_date->addDays($duration);
 
         if($cancelled) return "Annulé";
         if($today->greaterThanOrEqualTo($location_date) && $today->lessThanOrEqualTo($end_date)) return "En cours";
         if($today->gt($end_date)) return "Passée";
-        if($today->lt($location_date)) return "En attente";
+        if($today->lt($location_date)) return "En attente";*/
     }
 
     public function getColor(){

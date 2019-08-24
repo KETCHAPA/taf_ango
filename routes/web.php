@@ -18,6 +18,7 @@ Route::get('/employees', 'UserController@index');
 
 //Gestion de la discipline
 Route::resource('discipline', 'DisciplineController');
+Route::post('presences', "DisciplineController@createPresence")->name("presences.store");
 
 Route::resource('vehicles', 'VehiclesController');
 
@@ -28,6 +29,13 @@ Route::get("locations/{id}/edit", "LocationsController@edit")->name("locations.e
 Route::post("/locations/{id}/cancel", "LocationsController@cancel")->name("locations.cancel");
 
 Route::put("locations/{id}/edit", "LocationsController@update")->name("vehicles.updateLocation");
-/*Route::get('users/{id}', function ($id) {
 
-});*/
+Route::resource('mails', 'MailsController');
+Route::get("mail/{id}/send", "MailsController@send")->name("mails.send");
+Route::get("mail/{id}/receive", "MailsController@receive")->name("mails.receive");
+
+Route::get("planning/trips", "TripPlanningController@index");
+Route::post("planning/storre", "TripPlanningController@store")->name("plannings.store");
+Route::get('planning/{id}/cancel', "TripPlanningController@cancel")->name("planning.cancel");
+
+Route::post('personnel/{id}/report', "DisciplineController@storeReport");

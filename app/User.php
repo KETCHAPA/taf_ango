@@ -34,6 +34,10 @@ class User extends Authenticatable
         return $this->hasMany(Presence::class);
     }
 
+    public function reports(){
+        return $this->hasMany(Report::class, "employe_id");
+    }
+
     /**
      * The attributes that should be cast to native types.
      *

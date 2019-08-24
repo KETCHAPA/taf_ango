@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Presence;
+use App\Report;
+use App\ReportType;
 use App\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,7 +22,8 @@ class DisciplineController extends Controller
     public function index()
     {
         $personnels = User::where("role", "personnel")->paginate(10);
-        return view("Discipline.index", compact("personnels"));
+        $types = ReportType::all();
+        return view("Discipline.index", compact("personnels", "types"));
     }
 
     /**
@@ -27,9 +31,14 @@ class DisciplineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createPresence(Request $request)
     {
-        //
+        $user = User::findOrFail($request->user_id);
+        $presence = new Presence();
+        $presence->fill($request->all());
+        $presence->save();
+
+        return back()->withSuccess("La présence a bien été marquée.");
     }
 
     /**
@@ -87,7 +96,7 @@ class DisciplineController extends Controller
      */
     public function show($id)
     {
-        $personnel = User::with("presences")->findOrFail($id);
+        $personnel = User::with("presences", "reports")->findOrFail($id);
         return response()->json($personnel);
     }
 
@@ -125,5 +134,20 @@ class DisciplineController extends Controller
         $personnel = User::findOrFail($id);
         $personnel->delete();
         return back()->withSuccess("Le personnel a bien été retiré.");
+    }
+
+    public function storeReport($user_id){
+        $employee = User::findOrFail($user_id);
+        $report = new Report();
+        $report->fill(request()->all());
+
+        try{
+            $report->save();
+            return back()->withSuccess("Le rapport a bien été sauvegardé.");
+        }catch(Exception $e){
+            return back()->withErrors([
+                "message" => "Une erreur est survenue, veuillez réessayer s'il vous plait."
+            ]);
+        }
     }
 }

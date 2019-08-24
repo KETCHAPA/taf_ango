@@ -90,6 +90,13 @@
                                 <p>Gestion des véhicules</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('mails.index') }}">
+                                <i class="fa fa-car" aria-hidden="true"></i>
+                                <p>Gestion des courriers</p>
+                            </a>
+                        </li>
 					</ul>
 				</div>
 			</div>
