@@ -35,6 +35,67 @@
 							</li>
 						</ul>
 					</div>
+					<ul class="nav nav-primary">
+						<li class="nav-item active">
+							<a href="index.html#dashboard" aria-expanded="false">
+								<i class="fa fa-home"></i>
+								<p>Tableau de bord</p>
+							</a>
+						</li>
+						<li class="nav-section">
+							<span class="sidebar-mini-icon">
+								<i class="fa fa-ellipsis-h"></i>
+							</span>
+						</li>
+						<li class="nav-item">
+							<a data-toggle="collapse" href="index.html#base">
+								<i class="fa fa-bus" aria-hidden="true"></i>
+								<p>Gestion des voyages</p>
+							</a>
+                        </li>
+
+						<li class="nav-item">
+							<a data-toggle="collapse" href="index.html#base">
+								<i class="fa fa-fire" aria-hidden="true"></i>
+								<p>Gestion des Sinistres</p>
+							</a>
+                        </li>
+
+						<li class="nav-item">
+							<a data-toggle="collapse" href="index.html#base">
+								<i class="fas fa-user-shield    "></i>
+								<p>Gestion du personnel</p>
+							</a>
+                        </li>
+
+						<li class="nav-item">
+							<a data-toggle="collapse" href="index.html#base">
+								<i class="fas fa-layer-group"></i>
+								<p>Gestion des passagers</p>
+							</a>
+                        </li>
+
+                        <li class="nav-item">
+							<a href="{{ route('discipline.index') }}">
+								<i class="fa fa-users" aria-hidden="true"></i>
+								<p>Gestion de la discipline</p>
+							</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('vehicles.index') }}">
+                                <i class="fa fa-car" aria-hidden="true"></i>
+                                <p>Gestion des véhicules</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('mails.index') }}">
+                                <i class="fa fa-car" aria-hidden="true"></i>
+                                <p>Gestion des courriers</p>
+                            </a>
+                        </li>
+					</ul>
 				</div>
 			</div>
 			<ul class="nav nav-primary">

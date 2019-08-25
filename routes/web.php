@@ -19,6 +19,7 @@ Route::post('/search', 'HomeController@search');
 
 //Gestion des clients
 Route::get('/employees', 'UserController@index');
+
 Route::get('/employee/show/{id}', 'UserController@show');
 Route::get('/employee/create', 'UserController@create');
 Route::post('/employee/store', 'UserController@store');
@@ -64,3 +65,28 @@ Route::get('/booking/edit/{id}', 'BookingController@edit');
 Route::post('/booking/update/{id}', 'BookingController@update');
 Route::post('/booking/destroy/{id}', 'BookingController@destroy');
 Route::post('/booking/confirm/{id}', 'BookingController@confirm');
+
+//Gestion de la discipline
+Route::resource('discipline', 'DisciplineController');
+Route::post('presences', "DisciplineController@createPresence")->name("presences.store");
+
+Route::resource('vehicles', 'VehiclesController');
+
+Route::get('vehicles/{id}/louer', "LocationsController@locationForm")->name("vehicles.addLocation");
+Route::post('vehicles/louer', "LocationsController@store")->name("vehicles.storeLocation");
+
+Route::get("locations/{id}/edit", "LocationsController@edit")->name("locations.edit");
+Route::post("/locations/{id}/cancel", "LocationsController@cancel")->name("locations.cancel");
+
+Route::put("locations/{id}/edit", "LocationsController@update")->name("vehicles.updateLocation");
+
+Route::resource('mails', 'MailsController');
+Route::get("mail/{id}/send", "MailsController@send")->name("mails.send");
+Route::get("mail/{id}/receive", "MailsController@receive")->name("mails.receive");
+
+Route::get("planning/trips", "TripPlanningController@index");
+Route::post("planning/storre", "TripPlanningController@store")->name("plannings.store");
+Route::get('planning/{id}/cancel', "TripPlanningController@cancel")->name("planning.cancel");
+
+Route::post('personnel/{id}/report', "DisciplineController@storeReport");
+Route::get('planning/print', "TripPlanningController@print")->name("planning.print");
