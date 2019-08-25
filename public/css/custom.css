@@ -1,0 +1,13 @@
+.preloader {
+    text-align: center;
+    vertical-align: middle;
+    height: 100px;
+}
+
+.modal-xl {
+    max-width: 1200px;
+}
+
+.shortified-table {
+    font-size: 12px;
+}

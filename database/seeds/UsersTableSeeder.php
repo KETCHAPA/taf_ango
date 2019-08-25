@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use phpDocumentor\Reflection\Types\Integer;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'address' => Str::random(10),
             'tel' => Str::random(10),
             'cni' => Str::random(10),
-            'role' => "Administrateur",
+            'role' => "Guichetier",
             'email' => Str::random(10).'@gmail.com',
             'password' => bcrypt('password'),
         ]);

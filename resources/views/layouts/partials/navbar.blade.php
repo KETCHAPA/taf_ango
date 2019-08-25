@@ -3,7 +3,8 @@
 				
         <div class="container-fluid">
             <div class="collapse" id="search-nav">
-                <form class="navbar-left navbar-form nav-search mr-md-3">
+                <form action="/search" method="POST" class="navbar-left navbar-form nav-search mr-md-3">
+                    @csrf
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <button type="submit" class="btn btn-search pr-1">

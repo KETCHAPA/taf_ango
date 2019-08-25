@@ -4,84 +4,180 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $employees = User::find();
-
+        $employees = User::paginate(5);
         return view('Employees.listAll', compact("employees"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view("Employees.add");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $user  = new User;
+        $user->code = Str::random(10);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->role = $request->role;
+        $user->email = $request->email;
+        if($request->password != $request->password2){
+            $arlert_type = "error";
+            $message = "Les deux mots de passe ne coïncident pas !";
+
+            $notification = array(
+                "alert-type" => $arlert_type,
+                "message" => $message
+            );
+
+            return back()->with($notification);
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->login = $request->login;
+        $user->address = $request->address;
+        $user->cni = $request->cni;
+        if($request->age < 0){
+            $arlert_type = "error";
+            $message = "Age invalide";
+
+            $notification = array(
+                "alert-type" => $arlert_type,
+                "message" => $message
+            );
+
+            return back()->with($notification);
+        }
+        
+        $user->tel = $request->tel;
+        $user->age = $request->age;
+
+        if($user->save()) {
+            $arlert_type = "success";
+            $message = "Nouvel employé enregistré";
+        } else {
+            $arlert_type = "error";
+            $message = "Echec lors de l'enregistrement";
+        }
+
+        $notification = array(
+            "alert-type" => $arlert_type,
+            "message" => $message
+        );
+
+        $employees = User::paginate(5);
+        return redirect("/employees")->with($notification);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $employee  = User::find($id);
+
+        return view("Employees.show", compact("employee"));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $employee = User::find($id);
+
+        return view("Employees.update", compact("employee"));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $user  = User::find($id);
+        if(isset($request->first_name)){
+            $user->first_name = $request->first_name;
+        }
+        if(isset($request->last_name)){
+            $user->last_name = $request->last_name;
+        }
+        if(isset($request->email)){
+            $user->email = $request->email;
+        }
+        if(isset($request->role)){
+            $user->role = $request->role;
+        }
+        if(isset($request->login)){
+            $user->login = $request->login;
+        }
+        if(isset($request->address)){
+            $user->address = $request->address;
+        }
+        if(isset($request->cni)){
+            $user->cni = $request->cni;
+        }
+        if(isset($request->tel)){
+            $user->tel = $request->tel;
+        }
+        if($request->password != $request->password2){
+            $arlert_type = "error";
+            $message = "Les deux mots de passe ne coïncident pas !";
+
+            $notification = array(
+                "alert-type" => $arlert_type,
+                "message" => $message
+            );
+
+            return back()->with($notification);
+        }
+
+        $user->password = bcrypt($request->password);
+        if(isset($request->age)){
+            if($request->age < 0){
+                $arlert_type = "error";
+                $message = "Age invalide";
+    
+                $notification = array(
+                    "alert-type" => $arlert_type,
+                    "message" => $message
+                );
+    
+                return back()->with($notification);
+            }
+            
+            $user->age = $request->age;        
+        }
+        
+        if($user->save()) {
+            $arlert_type = "success";
+            $message = "Nouvel employé enregistré";
+        } else {
+            $arlert_type = "error";
+            $message = "Echec lors de l'enregistrement";
+        }
+
+        $notification = array(
+            "alert-type" => $arlert_type,
+            "message" => $message
+        );
+
+        $employees = User::paginate(5);
+        return redirect("/employee/show/" . $user->id)->with($notification);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        if(User::find($id)->delete()) {
+            $arlert_type = "success";
+            $message = "Suppression effectuée";
+        } else {
+            $arlert_type = "error";
+            $message = "Echec lors de la suppression";
+        }
+
+        $notification = array(
+            "alert-type" => $arlert_type,
+            "message" => $message
+        );
+
+        $employees = User::paginate(5);
+        return back()->with($notification);
     }
 }
