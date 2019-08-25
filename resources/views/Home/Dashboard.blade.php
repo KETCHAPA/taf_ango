@@ -39,6 +39,7 @@
             <div class="col-md-6">
                 <div class="card full-height">
                     <div class="card-body">
+
                         <div class="card-title">Réservations</div>
                         <div class="row py-3">
                             <div class="col-md-4 d-flex flex-column justify-content-around">
@@ -66,7 +67,7 @@
                         <div class="card-title fw-mediumbold">Colis/Courrier</div>
                         <div class="card-list">
 
-                            @forelse ($mails as $mal)
+                            @forelse ($mails as $mail)
 
                                 <div class="item-list">
                                     <div class="info-user ml-3">

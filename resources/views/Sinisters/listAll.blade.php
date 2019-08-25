@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Listes des employés')
+@section('title', 'Listes des voyages')
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -7,8 +7,8 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Listes de employés</h4>
-                    <button onclick="window.location.href='/employee/create'" class="btn btn-primary btn-round ml-auto">
+                    <h4 class="card-title">Listes de incidents</h4>
+                    <button onclick="window.location.href='/sinister/create'" class="btn btn-primary btn-round ml-auto">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -19,39 +19,36 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Login</th>
-                                <th>Age</th>
-                                <th>Téléphone</th>
-                                <th>Email</th>
-                                <th>Adresse</th>
-                                <th>Numero de CNI</th>
-                                <th>Poste</th>
+                                <th>Intitulé</th>
+                                <th>Concerné</th>
+                                <th>Etat</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employees as $employee)
+                            @foreach ($sinisters as $sinister)
                                 <tr>
-                                    <td>{{ $employee->id }}</td>
-                                    <td>{{ $employee->first_name }}</td>
-                                    <td>{{ $employee->last_name }}</td>
-                                    <td>{{ $employee->login }}</td>
-                                    <td>{{ $employee->age }}</td>
-                                    <td>{{ $employee->tel }}</td>
-                                    <td>{{ $employee->email }}</td>
-                                    <td>{{ $employee->address }}</td>
-                                    <td>{{ $employee->cni }}</td>
-                                    <td>{{ $employee->role }}</td>
-                                    <td style="min-width: 200px">
-                                        <a href="/employee/show/{{$employee->id}}"><button class="btn btn-primary">
+                                    <td>{{ $sinister->id }}</td>
+                                    <td>{{ $sinister->label }}</td>
+                                    <td>{{ $sinister->ticket->first_name }} {{ $sinister->ticket->last_name }}</td>
+                                    <td>
+                                        @if ($sinister->isClose == 1)
+                                            Résolu <i style="margin-left: 6px" class="fas fa-circle text-success"></i>
+                                        @else
+                                            En cours <i style="margin-left: 6px" class="fas fa-circle text-warning"></i>
+                                        @endif
+                                    </td>
+                                    <td style="min-width: 250px">
+                                        <a href="/sinister/show/{{$sinister->id}}" style=""><button class="btn btn-info">
                                             <i class="fas fa-eye"></i>
                                         </button></a>
-                                        <a href="/employee/edit/{{$employee->id}}" style=""><button class="btn btn-warning">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </button></a>
-                                        <form style="display:inline-block" class="delete" action="/employee/destroy/{{$employee->id}}" method="POST">
+                                        <form style="display:inline-block" action="/sinister/close/{{$sinister->id}}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-warning">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </form>
+                                        <form style="display:inline-block" class="delete" action="/sinister/destroy/{{$sinister->id}}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
@@ -62,7 +59,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $employees->links() }}
+                    {{ $sinisters->links() }}
                 </div>
             </div>
         </div>
@@ -91,7 +88,7 @@
     </script>
     <script>
         $(".delete").on("submit", function(e){
-           return confirm("Supprimer cet employé");
+           return confirm("Supprimer cet incident ?");
         });
     </script>
 @endsection

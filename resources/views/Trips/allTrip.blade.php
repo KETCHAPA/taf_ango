@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Listes des employés')
+@section('title', 'Listes des voyages')
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -7,8 +7,8 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Listes de employés</h4>
-                    <button onclick="window.location.href='/employee/create'" class="btn btn-primary btn-round ml-auto">
+                    <h4 class="card-title">Listes de voyages</h4>
+                    <button onclick="window.location.href='/trip/create'" class="btn btn-primary btn-round ml-auto">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
@@ -19,39 +19,34 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Login</th>
-                                <th>Age</th>
-                                <th>Téléphone</th>
-                                <th>Email</th>
-                                <th>Adresse</th>
-                                <th>Numero de CNI</th>
-                                <th>Poste</th>
+                                <th>Ville départ</th>
+                                <th>Ville destination</th>
+                                <th>Heure départ</th>
+                                <th>Date </th>
+                                <th>Montant</th>
                                 <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employees as $employee)
+                            @foreach ($trips as $trip)
                                 <tr>
-                                    <td>{{ $employee->id }}</td>
-                                    <td>{{ $employee->first_name }}</td>
-                                    <td>{{ $employee->last_name }}</td>
-                                    <td>{{ $employee->login }}</td>
-                                    <td>{{ $employee->age }}</td>
-                                    <td>{{ $employee->tel }}</td>
-                                    <td>{{ $employee->email }}</td>
-                                    <td>{{ $employee->address }}</td>
-                                    <td>{{ $employee->cni }}</td>
-                                    <td>{{ $employee->role }}</td>
-                                    <td style="min-width: 200px">
-                                        <a href="/employee/show/{{$employee->id}}"><button class="btn btn-primary">
-                                            <i class="fas fa-eye"></i>
+                                    <td>{{ $trip->id }}</td>
+                                    <td>{{ $trip->departure }}</td>
+                                    <td>{{ $trip->destination }}</td>
+                                    <td>{{ $trip->time }}</td>
+                                    <td>{{ $trip->date }}</td>
+                                    <td>{{ $trip->amount }}</td>
+                                    <td style="min-width: 250px">
+                                        <a href="/trip/show/{{$trip->id}}"><button class="btn btn-primary">
+                                                <i class="fas fa-eye"></i>
+                                            </button></a>
+                                        <a href="/tickets/{{$trip->id}}"><button class="btn btn-dark">
+                                            <i class="fas fa-ticket-alt"></i>
                                         </button></a>
-                                        <a href="/employee/edit/{{$employee->id}}" style=""><button class="btn btn-warning">
+                                        <a href="/trip/edit/{{$trip->id}}" style=""><button class="btn btn-warning">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button></a>
-                                        <form style="display:inline-block" class="delete" action="/employee/destroy/{{$employee->id}}" method="POST">
+                                        <form style="display:inline-block" class="delete" action="/trip/destroy/{{$trip->id}}" method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
@@ -62,7 +57,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $employees->links() }}
+                    {{ $trips->links() }}
                 </div>
             </div>
         </div>
@@ -91,7 +86,7 @@
     </script>
     <script>
         $(".delete").on("submit", function(e){
-           return confirm("Supprimer cet employé");
+           return confirm("Supprimer ce voyage ?");
         });
     </script>
 @endsection
