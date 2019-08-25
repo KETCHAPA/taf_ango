@@ -14,10 +14,10 @@
                             Nouveau
                         </button>
                         &nbsp;
-                        <button class="btn btn-success btn-sm btn-round">
+                        <a href="{{ route('planning.print') }}" class="btn btn-success btn-sm btn-round">
                             <i class="fa fa-print" aria-hidden="true"></i>
                             Imprimer le calendrier
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="card-body">

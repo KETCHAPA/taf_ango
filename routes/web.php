@@ -39,3 +39,4 @@ Route::post("planning/storre", "TripPlanningController@store")->name("plannings.
 Route::get('planning/{id}/cancel', "TripPlanningController@cancel")->name("planning.cancel");
 
 Route::post('personnel/{id}/report', "DisciplineController@storeReport");
+Route::get('planning/print', "TripPlanningController@print")->name("planning.print");

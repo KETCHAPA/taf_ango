@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Trip;
 use App\TripPlanning;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class TripPlanningController extends Controller
 {
@@ -46,5 +48,13 @@ class TripPlanningController extends Controller
         $message = $tripPlan->cancelled ? "déprogrammé" : "reprogrammé";
 
         return back()->withSuccess("Le voyage a été $message.");
+    }
+
+    public function print(){
+        $plannings = TripPlanning::where("date", Carbon::today())->get();
+        $pdf = PDF::loadView('states.planning', ["plannings" => $plannings]);
+        $date = date('d-m-Y');
+
+        return $pdf->stream("Planning du $date.pdf");
     }
 }
