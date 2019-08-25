@@ -45,16 +45,16 @@
                                     <td>{{ $employee->cni }}</td>
                                     <td>{{ $employee->role }}</td>
                                     <td style="min-width: 200px">
-                                        <a href="/employee/show/{{$employee->id}}"><button class="btn btn-primary">
-                                            <i class="fas fa-eye"></i>
+                                        <a href="/employee/show/{{$employee->id}}"><button class="btn btn-sm btn-primary">
+                                            <i class="fa fa-eye"></i>
                                         </button></a>
-                                        <a href="/employee/edit/{{$employee->id}}" style=""><button class="btn btn-warning">
-                                            <i class="fas fa-pencil-alt"></i>
+                                        <a href="/employee/edit/{{$employee->id}}" style=""><button class="btn btn-sm btn-warning">
+                                            <i class="fa fa-pencil"></i>
                                         </button></a>
                                         <form style="display:inline-block" class="delete" action="/employee/destroy/{{$employee->id}}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">
-                                                <i class="fas fa-trash"></i>
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -74,16 +74,16 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }

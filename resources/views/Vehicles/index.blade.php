@@ -77,12 +77,6 @@
 @section('script')
 <script src="\js/plugin/datatables/datatables.min.js"></script>
 <script>
-    $(".dataTable").DataTable({
-        "language": {
-            "emptyTable": "Aucun élément à afficher pour le moment."
-        }
-    })
-
     $("#locationsTable").DataTable({
         "language": {
             "emptyTable": "Aucun élément à afficher pour le moment."

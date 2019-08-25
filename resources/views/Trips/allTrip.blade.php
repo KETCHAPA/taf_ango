@@ -11,6 +11,11 @@
                     <button onclick="window.location.href='/trip/create'" class="btn btn-primary btn-round ml-auto">
                         <i class="fa fa-plus"></i>
                     </button>
+                    &nbsp;
+
+                    <button onclick="window.location.href='{{ route('plannings.index') }}'" class="btn btn-primary btn-round">
+                        <i class="fa fa-print" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
             <div class="card-body">
@@ -37,18 +42,18 @@
                                     <td>{{ $trip->date }}</td>
                                     <td>{{ $trip->amount }}</td>
                                     <td style="min-width: 250px">
-                                        <a href="/trip/show/{{$trip->id}}"><button class="btn btn-primary">
+                                        <a href="/trip/show/{{$trip->id}}"><button class="btn btn-primary btn-sm">
                                                 <i class="fas fa-eye"></i>
                                             </button></a>
-                                        <a href="/tickets/{{$trip->id}}"><button class="btn btn-dark">
+                                        <a href="/tickets/{{$trip->id}}"><button class="btn btn-dark btn-sm">
                                             <i class="fas fa-ticket-alt"></i>
                                         </button></a>
-                                        <a href="/trip/edit/{{$trip->id}}" style=""><button class="btn btn-warning">
+                                        <a href="/trip/edit/{{$trip->id}}" style=""><button class="btn btn-warning btn-sm">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button></a>
                                         <form style="display:inline-block" class="delete" action="/trip/destroy/{{$trip->id}}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -69,16 +74,16 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }

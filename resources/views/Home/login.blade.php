@@ -18,7 +18,7 @@
 			}
 		});
 	</script>
-	
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
 	<link rel="stylesheet" href="\css/bootstrap.min.css">
@@ -33,12 +33,17 @@
 		<div class="login-aside w-50 d-flex align-items-center justify-content-center bg-white">
 			<div class="container container-login container-transparent animated fadeIn">
                 <h3 class="text-center">Connexion</h3>
+
+                @if ($errors->any())
+                    <p class="alert alert-danger">{{ $errors->all()[0] }}</p>
+                @endif
+
                 <form action="/" method="POST">
                     @csrf
                     <div class="login-form">
                         <div class="form-group">
                             <label for="login" class="placeholder"><b>Login</b></label>
-                            <input id="login" name="login" type="text" class="form-control" required>
+                            <input id="login" name="email" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="password" class="placeholder"><b>Mot de passe</b></label>

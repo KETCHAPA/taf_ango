@@ -149,11 +149,6 @@
 @section('script')
 <script src="\js/plugin/datatables/datatables.min.js"></script>
 <script>
-    $(".dataTable").DataTable({
-        "language": {
-            "emptyTable": "Aucun élément à afficher pour le moment."
-        }
-    })
 
     $("#addRowButton").on("click", function(){
         $("#addForm").submit()

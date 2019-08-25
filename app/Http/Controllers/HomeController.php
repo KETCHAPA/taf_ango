@@ -7,8 +7,8 @@ use App\Mail;
 use App\Trip;
 use App\User;
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -16,21 +16,16 @@ class HomeController extends Controller
         return view("Home.login");
     }
 
-    public function profile(Request $request) {
-        $user = User::where("login", "like", $request->login);
+    public function doLogin(Request $request) {
 
-        dd($user);
-
-        /* if($user->password == bcrypt($request->password)){
-            return redirect("/dashbaord");
-        } else {
-            $notification = array(
-                "message" => "Login ou Mot de passe incorrect",
-                "alert-type" => "error"
-            );
-
-            return back()->with($notification);
-        } */
+        $credentials = $request->only(["email", "password"]);
+        if(Auth::attempt($credentials)){
+            return redirect()->route("dashboard");
+        }else{
+            return back()->withErrors([
+                "message" => "Adresse mail ou mot de passe incorrect"
+            ]);
+        }
 
     }
 
