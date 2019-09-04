@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booking;
 use App\Mail;
 use App\Trip;
+use App\TripPlanning;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -36,9 +37,11 @@ class HomeController extends Controller
         $trips = Trip::all()->count();
         $bookings = Booking::all()->count();
 
+        $elements = TripPlanning::all();
+
         $mails = Mail::orderBy("created_at", "DESC")->take(5);
 
-        return view("Home.Dashboard", compact("new_users", "sales", "bookings", "quota_users", "trips", "mails"));
+        return view("Home.Dashboard", compact("new_users", "sales", "bookings", "quota_users", "trips", "mails", "elements"));
     }
 
     public function search(Request $request){

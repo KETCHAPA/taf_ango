@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Passenger;
 use App\Ticket;
 use Illuminate\Http\Request;
 use App\Trip;
 use Barryvdh\DomPDF\PDF;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -31,18 +34,31 @@ class TicketController extends Controller
     public function store($id, Request $request) {
         $ticket = new Ticket();
 
-        $ticket->first_name = $request->first_name;
-        $ticket->last_name = $request->last_name;
-        $ticket->tel = $request->tel;
-        $ticket->cni = $request->cni;
-        $ticket->email = $request->email; 
+        $passenger = Passenger::where("email", $request->email)->first() ?? new Passenger();
+        $passenger->first_name = $request->first_name;
+        $passenger->last_name = $request->last_name;
+        $passenger->tel = $request->tel;
+        $passenger->cni = $request->cni;
+        $passenger->email = $request->email;
+
         $ticket->trip_id = $id;
-        if($ticket->save()){
-            $message = "ticket ajoutée";
-            $alert_type = "success";
-        } else {
-            $message = "Echec lors de l'enregistrement du passager";
-            $alert_type = "error";
+
+        DB::beginTransaction();
+
+        try{
+            $passenger->save();
+            $ticket->passenger_id = $passenger->id;
+            if($ticket->save()){
+                $message = "ticket ajoutée";
+                $alert_type = "success";
+            } else {
+                $message = "Echec lors de l'enregistrement du passager";
+                $alert_type = "error";
+            }
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollback();
         }
 
         $notification = array(
@@ -138,8 +154,8 @@ class TicketController extends Controller
         $tickets = $trip->tickets->where("isValidate", "=", "1");
 
         $pdf = \PDF::loadView('pdf.allTicket', compact("tickets", "trip"));
-        
-        return $pdf->download('passagers voyage ' . $trip->departure . ' - ' . $trip->destination . '.pdf');
+
+        return $pdf->stream('passagers voyage ' . $trip->departure . ' - ' . $trip->destination . '.pdf');
     }
 
     public function printTicket($id) {

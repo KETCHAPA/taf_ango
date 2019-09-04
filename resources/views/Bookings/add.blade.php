@@ -46,6 +46,33 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row mt-5">
+                            <div class="col-md-10">
+                                <h2>Bagages</h2>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" id="addBagage" class="btn btn-sm btn-primary"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="bagage">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="first_name">Poids</label>
+                                        <input type="number" name="poids" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="first_name">Description</label>
+                                        <input type="text" name="description" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-action">
                         <button type="reset" class="btn btn-warning pull-right">Reinitialiser</button>
@@ -62,19 +89,40 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }
         @endif
+
+        $("#addBagage").unbind('click');
+        $("#addBagage").click(function(){
+            $(".bagage").append(
+                `<div class="row">`+
+                    `<div class="col-md-6 col-lg-6">`+
+                        `<div class="form-group">`+
+                            `<label for="first_name">Poids</label>`+
+                            `<input type="number" name="poids[]" class="form-control" />`+
+                        `</div>`+
+                    `</div>`+
+
+                    `<div class="col-md-6 col-lg-6">`+
+                        `<div class="form-group">`+
+                            `<label for="first_name">Description</label>`+
+                            `<input type="text" name="description[]" class="form-control" />`+
+                        `</div>`+
+                    `</div>`+
+                `</div>`
+            )
+        })
     </script>
 @endsection

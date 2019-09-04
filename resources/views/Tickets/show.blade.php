@@ -14,13 +14,13 @@
                             <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Nom du client:</label>
-                                    <input type="text" class="form-control" value = "{{ $ticket->first_name }} {{ $ticket->last_name }}">
+                                    <input type="text" class="form-control" value = "{{ $ticket->passenger->first_name }} {{ $ticket->passenger->last_name }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Email:</label>
-                                    <input type="email" class="form-control"  value="{{ $ticket->email }}">
+                                    <input type="email" class="form-control"  value="{{ $ticket->passenger->email }}">
                                 </div>
                             </div>
                         </div>
@@ -28,13 +28,13 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Carte nationale: </label>
-                                    <input type="text" class="form-control" value="{{ $ticket->cni }}">
+                                    <input type="text" class="form-control" value="{{ $ticket->passenger->cni }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Téléphone</label>
-                                    <input type="text" class="form-control" value="{{ $ticket->tel }}">
+                                    <input type="text" class="form-control" value="{{ $ticket->passenger->tel }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -89,11 +89,11 @@
                                 </div>
                         </div>
                         <div class="text-right mt-3 mb-3">
-                            
+
                             @if ($ticket->isValidate == 1)
                                 <a href="/ticket/print/{{ $ticket->id }}" class="btn btn-info">Imprimer</a>
                                 <button onclick="window.location.href='/tickets/{{ $trip->id }}'" class="btn btn-danger">Retour</button>
-                            @else 
+                            @else
                                 <a href="/ticket/validate/{{ $ticket->id }}" class="btn btn-success">Valider</a>
                                 <button onclick="window.location.href='/tickets/{{ $trip->id }}'" class="btn btn-danger">Retour</button>
                                 <div style="display: block; margin-top: 7px" class="btn btn-warning">
@@ -112,16 +112,16 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }

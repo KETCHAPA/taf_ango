@@ -64,30 +64,50 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title fw-mediumbold">Colis/Courrier</div>
-                        <div class="card-list">
+                        <div class="card-title fw-mediumbold">Planning de voyages</div>
+                        <div class="table-responsive">
+                            <div id="add-row_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="add-row" class="display table table-striped table-hover dataTable"
+                                            role="grid" aria-describedby="add-row_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Départ</th>
+                                                    <th scope="col">Arrivée</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Heure</th>
+                                                    <th scope="col">Etat</th>
+                                                    <th scope="col">Options</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
 
-                            @forelse ($mails as $mail)
+                                                @foreach ($elements as $item)
+                                                    <tr>
+                                                        <td>{{ $item->id }}</td>
+                                                        <td>{{ $item->trip->departure }}</td>
+                                                        <td>{{ $item->trip->destination }}</td>
+                                                        <td>{{ $item->date }}</td>
+                                                        <td>{{ $item->time  }}</td>
+                                                        <td><span class="badge badge-{{ $item->getColor() }}">{{ $item->getState() }}</span></td>
+                                                        <td>
+                                                            @if ($item->cancelled == 0)
+                                                                <a href="{{ route('planning.cancel', $item->id) }}" class="btn btn-round btn-danger btn-sm"><i class="icon icon-close"></i></a>
+                                                            @else
+                                                                <a href="{{ route('planning.cancel', $item->id) }}" class="btn btn-round btn-success btn-sm"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
 
-                                <div class="item-list">
-                                    <div class="info-user ml-3">
-                                        <div class="username">{{ $mail->sender }}</div>
-                                        <div class="status">Graphic Designer</div>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <button class="btn btn-icon btn-primary btn-round btn-xs">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
                                 </div>
 
-
-                            @empty
-
-                                <p class="alert alert-warning">
-                                    Aucune information à afficher.
-                                </p>
-
-                            @endforelse
-
+                            </div>
                         </div>
                     </div>
                 </div>

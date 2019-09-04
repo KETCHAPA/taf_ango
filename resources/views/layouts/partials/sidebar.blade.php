@@ -48,12 +48,24 @@
                                     <i class="fa fa-ellipsis-h"></i>
                                 </span>
                             </li>
-                            <li onclick="window.location.href='/trips'" class="nav-item">
-                                <a data-toggle="collapse" href="index.html#base">
-                                    <i class="fas fa-bus"></i>
-                                    <p>Gestion des voyages</p>
-                                </a>
-                            </li>
+
+                            @if (auth()->user()->fonction == "Administrateur" || auth()->user()->fonction == "Guichetier")
+                                <li onclick="window.location.href='/trips'" class="nav-item">
+                                    <a data-toggle="collapse" href="index.html#base">
+                                        <i class="fas fa-bus"></i>
+                                        <p>Gestion des voyages</p>
+                                    </a>
+                                </li>
+                            @endif
+
+                            @if (auth()->user()->fonction == "Administrateur" || auth()->user()->fonction == "Comptable")
+                                <li class="nav-item">
+                                    <a href="{{ route('bills.index') }}">
+                                        <i class="fa fa-ticket"></i>
+                                        <p>Gestion des factures</p>
+                                    </a>
+                                </li>
+                            @endif
 
                             <li onclick="window.location.href='/sinisters'" class="nav-item">
                                 <a data-toggle="collapse" href="index.html#base">
@@ -62,39 +74,47 @@
                                 </a>
                             </li>
 
-                            <li onclick="window.location.href='/employees'" class="nav-item">
+                            <!--<li onclick="window.location.href='/employees'" class="nav-item">
                                 <a data-toggle="collapse" href="index.html#base">
                                     <i class="fas fa-user-tie"></i>
                                     <p>Gestion du personnel</p>
                                 </a>
-                            </li>
+                            </li>-->
+                            @if (auth()->user()->fonction == "Administrateur" || auth()->user()->fonction == "Guichetier")
                             <li onclick="window.location.href='/bookings'" class="nav-item">
                                 <a data-toggle="collapse" href="index.html#base">
                                     <i class="fas fa-credit-card"></i>
                                     <p>Gestion des reservation</p>
                                 </a>
                             </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a href="{{ route('discipline.index') }}">
-                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                    <p>Gestion de la discipline</p>
-                                </a>
-                            </li>
+                            @if (auth()->user()->fonction == "Administrateur")
+                                <li class="nav-item">
+                                    <a href="{{ route('discipline.index') }}">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <p>Gestion de la discipline</p>
+                                    </a>
+                                </li>
+                            @endif
 
-                            <li class="nav-item">
-                                <a href="{{ route('vehicles.index') }}">
-                                    <i class="fa fa-car" aria-hidden="true"></i>
-                                    <p>Gestion des véhicules</p>
-                                </a>
-                            </li>
+                            @if (auth()->user()->fonction == "Administrateur")
+                                <li class="nav-item">
+                                    <a href="{{ route('vehicles.index') }}">
+                                        <i class="fa fa-car" aria-hidden="true"></i>
+                                        <p>Gestion des véhicules</p>
+                                    </a>
+                                </li>
+                            @endif
 
+                            @if (auth()->user()->fonction == "Service courrier")
                             <li class="nav-item">
                                 <a href="{{ route('mails.index') }}">
                                     <i class="fa fa-car" aria-hidden="true"></i>
                                     <p>Gestion des courriers</p>
                                 </a>
                             </li>
+                            @endif
                         </ul>
 
 				</div>

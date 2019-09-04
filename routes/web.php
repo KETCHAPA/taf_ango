@@ -93,4 +93,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('personnel/{id}/report', "DisciplineController@storeReport");
     Route::get('planning/print', "TripPlanningController@print")->name("planning.print");
 
+    Route::resource('bills', 'BillsController');
+
 });

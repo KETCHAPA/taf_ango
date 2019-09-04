@@ -31,13 +31,13 @@
                             @foreach ($bookings as $booking)
                                 <tr>
                                     <td>{{ $booking->id }}</td>
-                                    <td>{{ $booking->first_name }} {{ $booking->last_name }}</td>
-                                    <td>{{ $booking->email }}</td>
-                                    <td>{{ $booking->cni }}</td>
-                                    <td>{{ $booking->tel }}</td>
+                                    <td>{{ $booking->passenger->first_name }} {{ $booking->passenger->last_name }}</td>
+                                    <td>{{ $booking->passenger->email }}</td>
+                                    <td>{{ $booking->passenger->cni }}</td>
+                                    <td>{{ $booking->passenger->tel }}</td>
                                     <td>{{ $booking->trip->departure }} - {{ $booking->trip->destination }}</td>
                                     <td style="min-width: 250px">
-                                        <a href="/booking/show/{{$booking->id}}"><button class="btn btn-primary">
+                                        <a href="/booking/show/{{$booking->id}}"><button class="btn btn-sm btn-primary">
                                                 <i class="fas fa-eye"></i>
                                             </button></a>
                                         <form style="display:inline-block" action="/booking/confirm/{{$booking->id}}" method="POST">

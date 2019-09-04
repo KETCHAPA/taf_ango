@@ -37,11 +37,11 @@
                             @foreach ($tickets as $ticket)
                                 <tr>
                                     <td>{{ $ticket->id }}</td>
-                                    <td>{{ $ticket->first_name }}</td>
-                                    <td>{{ $ticket->last_name }}</td>
-                                    <td>{{ $ticket->email }}</td>
-                                    <td>{{ $ticket->tel }}</td>
-                                    <td>{{ $ticket->cni }}</td>
+                                    <td>{{ $ticket->passenger->first_name }}</td>
+                                    <td>{{ $ticket->passenger->last_name }}</td>
+                                    <td>{{ $ticket->passenger->email }}</td>
+                                    <td>{{ $ticket->passenger->tel }}</td>
+                                    <td>{{ $ticket->passenger->cni }}</td>
                                     <td style="min-width: 155px">
                                         @if ($ticket->isValidate == 0)
                                             Non validé <span style="margin-left: 7px" class="text-warning"><i class="fas fa-circle"></i></span>
@@ -51,19 +51,19 @@
                                     </td>
                                     <td style="min-width: 248px">
                                         @if ($ticket->isValidate == 0)
-                                            <a href="/ticket/validate/{{$ticket->id}}"><button class="btn btn-success">
+                                            <a href="/ticket/validate/{{$ticket->id}}"><button class="btn btn-sm btn-success">
                                                 <i class="fas fa-check"></i>
                                             </button></a>
                                         @endif
-                                        <a href="/ticket/show/{{$ticket->id}}" style=""><button class="btn btn-primary">
+                                        <a href="/ticket/show/{{$ticket->id}}" style=""><button class="btn btn-sm btn-primary">
                                             <i class="fas fa-eye"></i>
                                         </button></a>
-                                        <a href="/ticket/edit/{{$ticket->id}}" style=""><button class="btn btn-warning">
+                                        <a href="/ticket/edit/{{$ticket->id}}" style=""><button class="btn btn-sm btn-warning">
                                             <i class="fas fa-pencil-alt"></i>
                                         </button></a>
                                         <form style="display:inline-block" class="delete" action="/ticket/destroy/{{$ticket->id}}" method="POST">
                                             @csrf
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
@@ -83,16 +83,16 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }

@@ -43,7 +43,7 @@
                                     <td>{{ $employee->email }}</td>
                                     <td>{{ $employee->address }}</td>
                                     <td>{{ $employee->cni }}</td>
-                                    <td>{{ $employee->role }}</td>
+                                    <td>{{ $employee->fonction }}</td>
                                     <td style="min-width: 200px">
                                         <a href="/employee/show/{{$employee->id}}"><button class="btn btn-sm btn-primary">
                                             <i class="fa fa-eye"></i>

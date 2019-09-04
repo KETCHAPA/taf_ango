@@ -54,10 +54,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="role">Poste</label>
-                                        <select type="text" id="role" class="form-control" name="role">
+                                        <select type="text" id="role" class="form-control" name="fonction">
                                             <option value="Chauffeur">Chauffeur</option>
                                             <option value="Guichetier">Guichetier</option>
                                             <option value="Administrateur">Administrateur</option>
+                                            <option value="Bagagiste">Bagagiste</option>
+                                            <option value="Service courrier">Service Courrier</option>
+                                            <option value="Comptable">Comptable</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -87,16 +90,16 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }

@@ -10,4 +10,8 @@ class Ticket extends BaseModel
         return $this->belongsTo("App\Trip");
     }
 
+    public function passenger(){
+        return $this->belongsTo(Passenger::class);
+    }
+
 }

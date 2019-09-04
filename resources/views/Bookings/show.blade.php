@@ -14,13 +14,13 @@
                             <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Nom du client:</label>
-                                    <input type="text" class="form-control" value = "{{ $booking->first_name }} {{ $booking->last_name }}">
+                                    <input type="text" class="form-control" value = "{{ $booking->passenger->first_name }} {{ $booking->passenger->last_name }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Email:</label>
-                                    <input type="email" class="form-control"  value="{{ $booking->email }}">
+                                    <input type="email" class="form-control"  value="{{ $booking->passenger->email }}">
                                 </div>
                             </div>
                         </div>
@@ -28,13 +28,13 @@
                             <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Carte nationale: </label>
-                                    <input type="text" class="form-control" value="{{ $booking->cni }}">
+                                    <input type="text" class="form-control" value="{{ $booking->passenger->cni }}">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Téléphone</label>
-                                    <input type="text" class="form-control" value="{{ $booking->tel }}">
+                                    <input type="text" class="form-control" value="{{ $booking->passenger->tel }}">
                                 </div>
                             </div>
                         </div>
@@ -98,16 +98,16 @@
         @if(Session::has('message'))
             var type = "{{Session::get('alert-type')}}";
             switch(type) {
-                case 'info': 
+                case 'info':
                     toastr.info("{{ Session::get('message') }}");
                     break;
-                case 'success': 
+                case 'success':
                     toastr.success("{{ Session::get('message') }}");
                     break;
-                case 'error': 
+                case 'error':
                     toastr.error("{{ Session::get('message') }}");
                     break;
-                case 'warning': 
+                case 'warning':
                     toastr.warning("{{ Session::get('message') }}");
                     break;
             }

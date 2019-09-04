@@ -21,7 +21,7 @@ class DisciplineController extends Controller
      */
     public function index()
     {
-        $personnels = User::where("role", "personnel")->paginate(10);
+        $personnels = User::where("fonction", "personnel")->paginate(10);
         $types = ReportType::all();
         return view("Discipline.index", compact("personnels", "types"));
     }
@@ -64,7 +64,7 @@ class DisciplineController extends Controller
         //$user->code = "PER".
         $user->tel = $request->input("phone");
         $user->password = $password;
-        $user->role = "personnel";
+        $user->fonction = "personnel";
         try {
             DB::beginTransaction();
             $user->save();

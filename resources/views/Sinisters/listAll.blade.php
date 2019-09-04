@@ -1,5 +1,5 @@
 @extends('layouts.template')
-@section('title', 'Listes des voyages')
+@section('title', 'Listes des sinistres')
 @section('content')
 <div class="row">
     <div class="col-md-12">
@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Listes de incidents</h4>
+                    <h4 class="card-title">Listes de sinistres</h4>
                     <button onclick="window.location.href='/sinister/create'" class="btn btn-primary btn-round ml-auto">
                         <i class="fa fa-plus"></i>
                     </button>
@@ -30,7 +30,7 @@
                                 <tr>
                                     <td>{{ $sinister->id }}</td>
                                     <td>{{ $sinister->label }}</td>
-                                    <td>{{ $sinister->ticket->first_name }} {{ $sinister->ticket->last_name }}</td>
+                                    <td>{{ $sinister->ticket->passenger->first_name }} {{ $sinister->ticket->passenger->last_name }}</td>
                                     <td>
                                         @if ($sinister->isClose == 1)
                                             Résolu <i style="margin-left: 6px" class="fas fa-circle text-success"></i>

@@ -32,17 +32,25 @@
                     <th>email</th>
                     <th>Téléphone</th>
                     <th>CNI</th>
+                    <th>Bagages</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($tickets as $ticket)
                     <tr>
                         <td>{{ $ticket->id }}</td>
-                        <td>{{ $ticket->first_name }}</td>
-                        <td>{{ $ticket->last_name }}</td>
-                        <td>{{ $ticket->email }}</td>
-                        <td>{{ $ticket->tel }}</td>
-                        <td>{{ $ticket->cni }}</td>
+                        <td>{{ $ticket->passenger->first_name }}</td>
+                        <td>{{ $ticket->passenger->last_name }}</td>
+                        <td>{{ $ticket->passenger->email }}</td>
+                        <td>{{ $ticket->passenger->tel }}</td>
+                        <td>{{ $ticket->passenger->cni }}</td>
+                        <td>
+                            <ul>
+                                @foreach ($ticket->passenger->bagages as $bagage)
+                                    <li>{{ $bagage->poids }} Kg - {{ $bagage->description }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
