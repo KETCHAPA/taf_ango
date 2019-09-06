@@ -11,7 +11,7 @@
 |
 */
 
-//Home
+//Home 
 Route::get('/', 'HomeController@login');
 Route::post('/', 'HomeController@doLogin');
 
@@ -95,4 +95,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('bills', 'BillsController');
 
+    Route::get("stats", "HomeController@stats");
+    Route::get('logout', "HomeController@logout");
 });

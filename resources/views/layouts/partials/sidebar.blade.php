@@ -9,8 +9,8 @@
 				<div class="info">
 					<a data-toggle="collapse" href="index.html#collapseExample" aria-expanded="true">
 						<span>
-							Ango Simplice
-							<span class="user-level">Administrateur</span>
+							{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+							<span class="user-level">{{ auth()->user()->fonction }}</span>
 							<span class="caret"></span>
 						</span>
 					</a>
@@ -115,6 +115,14 @@
                                 </a>
                             </li>
                             @endif
+                           @if (auth()->user()->fonction == "Administrateur")
+                            <li class="nav-item">
+                                <a href="/stats">
+                                    <i class="fas fa-chart-pie"></i>
+                                    <p>Statistiques</p>
+                                </a>
+                            </li>
+                           @endif 
                         </ul>
 
 				</div>

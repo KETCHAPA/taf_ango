@@ -42,7 +42,7 @@
                     @csrf
                     <div class="login-form">
                         <div class="form-group">
-                            <label for="login" class="placeholder"><b>Login</b></label>
+                            <label for="login" class="placeholder"><b>Email</b></label>
                             <input id="login" name="email" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">

@@ -34,6 +34,9 @@
                             </div>
                         </div>
                     </div>
+                    @if (auth()->user()->fonction == "Administrateur")
+                        <button class="btn btn-info"><a style="color:white" href="/stats">voir plus</a></button>
+                    @endif
                 </div>
             </div>
             <div class="col-md-6">
@@ -55,6 +58,9 @@
                             </div>
                         </div>
                     </div>
+                    @if (auth()->user()->fonction == "Administrateur")
+                        <button class="btn btn-info"><a style="color:white" href="/stats">voir plus</a></button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -123,7 +129,7 @@
             Circles.create({
                 id:'circles-1',
                 radius:45,
-                value: "{{ $quota_users }}",
+                value: "{{ $new_users }}",
                 maxValue:100,
                 width:7,
                 text: "{{ $new_users }}",
@@ -138,7 +144,7 @@
             Circles.create({
                 id:'circles-2',
                 radius:45,
-                value:70,
+                value:"{{ $sales }}",
                 maxValue:100,
                 width:7,
                 text: "{{ $sales }}",

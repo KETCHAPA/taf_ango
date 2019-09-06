@@ -8,14 +8,15 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">Listes de voyages</h4>
-                    <button onclick="window.location.href='/trip/create'" class="btn btn-primary btn-round ml-auto">
+                    <button class="btn btn-primary btn-sm btn-round ml-auto" onclick="window.location.href='/trip/create'" >
                         <i class="fa fa-plus"></i>
+                        Nouveau
                     </button>
                     &nbsp;
-
-                    <button onclick="window.location.href='{{ route('plannings.index') }}'" class="btn btn-primary btn-round">
-                        <i class="fa fa-print" aria-hidden="true"></i>
-                    </button>
+                    <a href="planning/trips" class="btn btn-success btn-sm btn-round">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        Calendrier
+                    </a>
                 </div>
             </div>
             <div class="card-body">

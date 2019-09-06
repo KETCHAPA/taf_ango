@@ -8,8 +8,9 @@
             <div class="card-header">
                 <div class="d-flex align-items-center">
                     <h4 class="card-title">Listes de sinistres</h4>
-                    <button onclick="window.location.href='/sinister/create'" class="btn btn-primary btn-round ml-auto">
+                    <button class="btn btn-primary btn-sm btn-round ml-auto" onclick="window.location.href='/sinister/create'">
                         <i class="fa fa-plus"></i>
+                        Nouveau
                     </button>
                 </div>
             </div>
